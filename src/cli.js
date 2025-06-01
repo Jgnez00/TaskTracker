@@ -1,4 +1,5 @@
-import { addTask, deleteTask, listTasks, updateTask } from "./utils.js";
+import AddCommand from "./commands/AddCommand.js";
+import { deleteTask , listTasks, updateTask } from "./utils.js";
 
 const args = process.argv.slice(2); // Ignora los primeros dos argumentos (node y el script)
 const [method, param, newDescription] = args; // Desestructura los argumentos
@@ -14,12 +15,7 @@ switch (method) {
   }
   
   case 'add': {
-    if (!param) {
-      console.log('Falta el parámetro de tarea');
-      process.exit(1);
-    }
-
-    addTask(param);
+    new AddCommand(param).execute();
     break;
   }
   
