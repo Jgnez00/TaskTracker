@@ -1,8 +1,7 @@
-import { addTask, listTasks } from "./utils.js";
+import { addTask, listTasks, updateTask } from "./utils.js";
 
 const args = process.argv.slice(2); // Ignora los primeros dos argumentos (node y el script)
-const method = args[0]; // El primer argumento es el método (add, remove, list)
-const param = args[1]; // El segundo argumento es el parámetro (id o status)
+const [method, param, newDescription] = args; // Desestructura los argumentos
 
 switch (method) {
   case 'list': {
@@ -13,6 +12,7 @@ switch (method) {
     listTasks(param);
     break;
   }
+  
   case 'add': {
     if (!param) {
       console.log('Falta el parámetro de tarea');
@@ -22,7 +22,14 @@ switch (method) {
     addTask(param);
     break;
   }
-  case 'search': {
+  
+  case 'update': {
+    if (!param && ! newDescription) {
+      console.log('Faltan los parámetros de tarea y descripción');
+      process.exit(1);
+    }
+
+    updateTask(param, newDescription);
     break; 
   }
   case 'delete': {

@@ -37,3 +37,18 @@ export const addTask = (description) => {
   saveTasks(tasks);
   console.log(`Tarea añadida: ${newTask.id}`);
 }
+
+export const updateTask = (id, description) => {
+  const indexTask = tasks.findIndex(t => t.id === id);
+  
+  if (indexTask === -1) {
+    console.log(`No se encontró la tarea con id ${ id }`);
+    return;
+  }
+
+  tasks[indexTask].description = description;
+  tasks[indexTask].updateTask = new Date().toISOString();
+  saveTasks(tasks);
+  
+  console.log(`Tarea actualizada: ${tasks[indexTask].id}`)
+}
