@@ -52,3 +52,17 @@ export const updateTask = (id, description) => {
   
   console.log(`Tarea actualizada: ${tasks[indexTask].id}`)
 }
+
+export const deleteTask = (id) => {
+  const indexTask = tasks.findIndex(t => t.id === id);
+
+  if (indexTask === -1) {
+    console.log(`No se encontró la tarea con id ${ id }`);
+    return;
+  }
+
+  tasks.splice(indexTask, 1);
+  saveTasks(tasks);
+
+  console.log(`Tarea eliminada: ${id}`);
+}

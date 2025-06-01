@@ -1,4 +1,4 @@
-import { addTask, listTasks, updateTask } from "./utils.js";
+import { addTask, deleteTask, listTasks, updateTask } from "./utils.js";
 
 const args = process.argv.slice(2); // Ignora los primeros dos argumentos (node y el script)
 const [method, param, newDescription] = args; // Desestructura los argumentos
@@ -33,6 +33,12 @@ switch (method) {
     break; 
   }
   case 'delete': {
+    if (!param) {
+      console.log('Falta el id de la tarea a eliminar');
+      process.exit(1);
+    }
+
+    deleteTask(param);    
     break; 
   }
 }
