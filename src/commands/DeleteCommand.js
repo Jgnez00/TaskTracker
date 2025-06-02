@@ -1,12 +1,11 @@
-import { readTasks, saveTasks } from "../taskRepository.js";
-
 export default class DeleteCommand {
-  constructor (id) {
+  constructor (id, tasksRepository) {
     this.id = id;
+    this.tasksRepository = tasksRepository;
   }
 
   execute () {
-    const tasks = readTasks();
+    const tasks = this.tasksRepository.readTasks();
     if (typeof this.id === Number && this.id === 0) {
       console.log('El id tiene que ser un numero positivo');
       return;
@@ -19,7 +18,7 @@ export default class DeleteCommand {
     }
 
     tasks.splice(taskIndex, 1);
-    saveTasks(tasks);
+    this.tasksRepository.saveTasks(tasks);
     console.log(`La tareas con id ${this.id} se elimino correctamente`);
   }
 }

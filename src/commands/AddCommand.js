@@ -1,9 +1,9 @@
-import { readTasks, saveTasks } from "../taskRepository.js";
 import crypto from 'node:crypto';
 
 export default class AddCommand {
-  constructor(description) {
+  constructor(description, tasksRepository) {
     this.description = description;
+    this.tasksRepository = tasksRepository;
   }
 
   execute() {
@@ -22,7 +22,7 @@ export default class AddCommand {
       }
 
       tasks.push(newTask);
-      saveTasks(tasks);
+      this.tasksRepository.saveTasks(tasks);
       console.log(`Tarea añadida: ${newTask.id}`);
     } catch (e) {
       console.log(e.message);

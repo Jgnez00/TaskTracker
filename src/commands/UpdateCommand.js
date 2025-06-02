@@ -1,13 +1,12 @@
-import { readTasks, saveTasks } from "../taskRepository.js";
-
 export default class UpdateCommand {
-  constructor (id, description) {
+  constructor (id, tasksRepository, description) {
     this.id = id;
     this.description = description;
+    this.tasksRepository = tasksRepository;
   }
 
   execute () {
-    const tasks = readTasks();
+    const tasks = this.tasksRepository.readTasks();
 
     if (!this.id) {
       console.log('Para poder hacer una actualizacion el id debe existir');
@@ -31,7 +30,7 @@ export default class UpdateCommand {
     }
 
     tasks[taskIndex].description = this.description;
-    saveTasks(tasks);
+    this.tasksRepository.saveTasks(tasks);
     console.log(`Tarea actualizada correctamente`); 
   }
 }

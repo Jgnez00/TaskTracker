@@ -1,12 +1,11 @@
-import { readTasks } from "../taskRepository.js";
-
 export default class ListCommand {
-  constructor ( status ) {
+  constructor ( status, tasksRepository ) {
     this.status = status;
+    this.tasksRepository = tasksRepository;
   }  
 
   execute () {
-    const tasks = readTasks();
+    const tasks = this.tasksRepository.readTasks();
     if (!this.status) {
       console.log(tasks);
       return;
