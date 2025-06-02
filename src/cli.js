@@ -1,8 +1,4 @@
-import AddCommand from "./commands/AddCommand.js";
-import DeleteCommand from "./commands/DeleteCommand.js";
-import ListCommand from "./commands/ListCommand.js";
-import UpdateCommand from "./commands/UpdateCommand.js";
-import { deleteTask , listTasks, updateTask } from "./utils.js";
+import { AddCommand, DeleteCommand, UpdateCommand, ListCommand } from './commands/index.js';
 
 const args = process.argv.slice(2); // Ignora los primeros dos argumentos (node y el script)
 const [method, param, newDescription] = args; // Desestructura los argumentos
