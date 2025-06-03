@@ -1,4 +1,4 @@
-import { validateDescription, validateId } from "../validator/taskValidator";
+import { validateDescription, validateId } from "../validator/taskValidator.js";
 
 export default class UpdateCommand {
   // This command updates the description of an existing task by its ID.
@@ -22,8 +22,8 @@ export default class UpdateCommand {
   // Method to execute the command.
   execute () {
     const tasks = this.tasksRepository.readTasks(); // Read the current tasks from the tasks repository.
-    validateDescription(this.description); // Validate the new description of the task.
     validateId(this.id); // Validate the id of the task to be updated.    
+    validateDescription(this.description); // Validate the new description of the task.
 
     const taskIndex = tasks.findIndex(t => t.id === this.id); // Find the task with the given id.
 
