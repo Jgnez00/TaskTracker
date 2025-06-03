@@ -1,4 +1,5 @@
 import crypto from 'node:crypto';
+import { validateDescription } from '../validator/taskValidator.js';
 
 export default class AddCommand {
   // This command adds a new task with a description to the tasks repository.
@@ -20,14 +21,8 @@ export default class AddCommand {
   // Method to execute the command.
   execute () {
     try {
-      // Read the current tasks from the tasks repository.
-      const tasks = readTasks();
-
-      // Check if the description is provided and is a string.
-      if (typeof this.description !== 'string') {
-        console.log('The task description must be a string');
-        return;
-      }
+      const tasks = readTasks(); // Read the current tasks from the tasks repository.
+      validateDescription(this.description); // Validate the description of the new task.
 
       // Create the new task for the tasks repository.
       const newTask = {
@@ -38,16 +33,11 @@ export default class AddCommand {
         updatedAt: new Date().toISOString()
       }
 
-      // Add the new task to the tasks array.
-      tasks.push(newTask);
-
-      // Save the new task to the tasks repository.
-      this.tasksRepository.saveTasks(tasks);
-
-      // Display message in console with the id of new task.
-      console.log(`Task added: ${newTask.id}`);
+      tasks.push(newTask); // Add the new task to the tasks array.
+      this.tasksRepository.saveTasks(tasks); // Save the new task to the tasks repository.
+      console.log(`Task added successfully`); // Display message in console.
     } catch (e) {
-      console.log(e.message);
+      console.log(e.message); // Display error message in console if an error occurs.
     }
   }
 }

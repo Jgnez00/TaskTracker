@@ -1,3 +1,5 @@
+import { validateDescription, validateId } from "../validator/taskValidator";
+
 export default class UpdateCommand {
   // This command updates the description of an existing task by its ID.
 
@@ -19,43 +21,20 @@ export default class UpdateCommand {
 
   // Method to execute the command.
   execute () {
-    // Read the current tasks from the tasks repository.
-    const tasks = this.tasksRepository.readTasks();
+    const tasks = this.tasksRepository.readTasks(); // Read the current tasks from the tasks repository.
+    validateDescription(this.description); // Validate the new description of the task.
+    validateId(this.id); // Validate the id of the task to be updated.    
 
-    // Validate the id is not undefined.
-    if (!this.id) {
-      console.log('Para poder hacer una actualizacion el id debe existir');
-      return;
-    }
-
-    // Validate the id is a positive number.
-    if (typeof this.id !== Number && this.id <= 0) {
-      console.log('El id de la tarea debe ser un numero positivo')
-      return;
-    }
-
-    // Find the task with the given id.
-    const taskIndex = tasks.findIndex(t => t.id === this.id);
+    const taskIndex = tasks.findIndex(t => t.id === this.id); // Find the task with the given id.
 
     // If the task is not found, return a message of error.
     if (taskIndex === -1) {
       console.log(`No task were found with the id: ${this.id}`);
       return;
     }
-
-    // Check if the description is provided and is a string.
-    if (typeof this.description !== 'string'){
-      console.log('The description must be a string');
-      return;
-    }
-
-    // Update the task's description.
-    tasks[taskIndex].description = this.description;
-
-    // Update the task's updatedAt timestamp.
-    this.tasksRepository.saveTasks(tasks);
-
-    // Display message in console indicating the task with given id was updated successfully.
-    console.log(`Task with id ${this.id} was updated successfully`); 
+    
+    tasks[taskIndex].description = this.description; // Update the task's description.
+    this.tasksRepository.saveTasks(tasks); // Update the task's updatedAt timestamp.
+    console.log(`Task with id ${this.id} was updated successfully`); // Display message in console.
   }
 }

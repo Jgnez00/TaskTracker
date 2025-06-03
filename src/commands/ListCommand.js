@@ -1,3 +1,5 @@
+import { validateStatus } from "../validator/taskValidator";
+
 export default class ListCommand {
   // This command lists all tasks or filters them by status if provided.
 
@@ -17,25 +19,13 @@ export default class ListCommand {
 
   // Method to execute the command.
   execute () {
-    // Read the current tasks from the tasks repository.
-    const tasks = this.tasksRepository.readTasks();
+    const tasks = this.tasksRepository.readTasks(); // Read the current tasks from the tasks repository.
+    validateStatus(this.status); // Validate the provided status.
 
-    // If no status is provided, list all tasks.
-    if (!this.status) {
-      console.log(tasks);
-      return;
-    }
+    const tasksFiltered = tasks.filter(t => t.status === this.status); // filter tasks by that status.
 
-    // If a status is provided, filter tasks by that status.
-    const tasksFiltered = tasks.filter(t => t.status === this.status);
-
-    // If no tasks match the provided status, display a message.
-    if (tasksFiltered.length === 0) {
-      console.log(`There are no tasks with the status: ${this.status}`);
-      return;
-    }
-
-    // If tasks match the provided status, display them.
-    console.log(tasksFiltered);
-  }
+    tasksFiltered.length === 0 
+      ? console.log(`There are no tasks with the status: ${this.status}`) // If no tasks match the provided status, display a message error.
+      : console.log(tasksFiltered); // If tasks match the provided status, display them.
+  };
 }
