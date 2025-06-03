@@ -5,9 +5,19 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lis": "node ./src/cli.js list",
+    "ads": "node ./src/cli.js add",
+    "dle": "node ./src/cli.js delete",
+    "upd": "node ./src/cli.js update",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "29.7.0"
+  },
+  "jest": {
+    "transform": {}
+  }
 }
