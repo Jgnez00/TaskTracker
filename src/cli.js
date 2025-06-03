@@ -4,7 +4,7 @@ import TaskOperations from './taskOperations.js';
 const args = process.argv.slice(2); // Ignore the first two arguments (node and script path)
 const [method, param, newDescription] = args; // Deconstructs the arguments
 const taskRepository = new TaskOperations() // Create an object type TaskOperations
-const methodsAvailable = ['lis', 'ads', 'upd', 'del', 'help']; // Array with available methods
+const methodsAvailable = ['list', 'add', 'update', 'delete', 'help']; // Array with available methods
 
 // Array with all available commands (instantiated)
 const availableCommands = [

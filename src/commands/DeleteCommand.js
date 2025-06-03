@@ -12,7 +12,7 @@ export default class DeleteCommand {
   // Method to check if the command is a 'delete' command.
   // @param {string} method - The method to check.
   isMe (method) {
-    return method === 'del';
+    return method === 'delete';
   }
 
   // Method to execute the command.

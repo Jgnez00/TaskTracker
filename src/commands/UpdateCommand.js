@@ -16,7 +16,7 @@ export default class UpdateCommand {
   // Method to check if the command is an 'update' command.
   // @param {string} method - The method to check.
   isMe (method) {
-    return method === 'upd';
+    return method === 'update';
   }
 
   // Method to execute the command.

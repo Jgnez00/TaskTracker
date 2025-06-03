@@ -9,6 +9,7 @@
     "ads": "node ./src/cli.js add",
     "upd": "node ./src/cli.js update",
     "del": "node ./src/cli.js delete",
+    "hel": "node ./src/cli.js help",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [],

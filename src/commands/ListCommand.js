@@ -14,7 +14,7 @@ export default class ListCommand {
   // Method to check if the command is a 'list' command.
   // @param {string} method - The method to check.
   isMe (method) {
-    return method === 'lis';
+    return method === 'list';
   }
 
   // Method to execute the command.
