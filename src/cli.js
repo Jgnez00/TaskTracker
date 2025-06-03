@@ -1,9 +1,9 @@
 import { AddCommand, DeleteCommand, UpdateCommand, ListCommand } from './commands/index.js';
 import TaskOperations from './taskOperations.js';
 
-const args = process.argv.slice(2); // Ignora los primeros dos argumentos (node y el script)
-const [method, param, newDescription] = args; // Desestructura los argumentos
-const taskRepository = new TaskOperations() // Crea un objeto que contenga las funciones de lectura y escritura de tareas
+const args = process.argv.slice(2); // Ignore the first two arguments (node and script path)
+const [method, param, newDescription] = args; // Deconstructs the arguments
+const taskRepository = new TaskOperations() // Create an object type TaskOperations
 
 switch (method) {
   case 'list': {
