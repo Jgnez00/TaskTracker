@@ -6,6 +6,10 @@ export default class AddCommand {
     this.tasksRepository = tasksRepository;
   }
 
+  isMe (method) {
+    return method === 'add';
+  }
+
   execute() {
     try {const tasks = readTasks();
       if (typeof this.description !== 'string') {
