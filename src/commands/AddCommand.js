@@ -15,7 +15,7 @@ export default class AddCommand {
   // Method to check if the command is an 'add' command.
   // @param {string} method - The method to check.
   isMe (method) {
-    return method === 'add';
+    return method === 'ads';
   }
 
   // Method to execute the command.

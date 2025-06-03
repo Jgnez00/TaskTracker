@@ -7,8 +7,8 @@
   "scripts": {
     "lis": "node ./src/cli.js list",
     "ads": "node ./src/cli.js add",
-    "dle": "node ./src/cli.js delete",
     "upd": "node ./src/cli.js update",
+    "del": "node ./src/cli.js delete",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [],
