@@ -14,6 +14,7 @@ const availableCommands = [
   new DeleteCommand(param, taskRepository)
 ]
 
+// Check if the method is one of the available methods
 if (!methodsAvailable.includes(method)) {
   console.error(`Unknown command: ${method}`);
   console.log('Use "help" to see the list of available commands.');
@@ -29,7 +30,9 @@ if (method === 'help') {
   process.exit(0); // Exit the process after displaying help
 }
 
+// Iterate through the available commands 
 availableCommands.forEach(command => {
+  // Check if the command matches the method isMe
   if (command.isMe(method)) {
     command.execute(); // Execute the command if it matches the method
   }
