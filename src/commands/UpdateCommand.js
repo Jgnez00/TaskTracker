@@ -7,7 +7,7 @@ export default class UpdateCommand {
   // @param {number} id - The id of the task to update.
   // @param {TasksRepository} tasksRepository - The repository to manage tasks.
   // @param {string} description - The new description for the task.
-  constructor (id, tasksRepository, description) {
+  constructor (id, description, tasksRepository ) {
     this.id = id;
     this.description = description;
     this.tasksRepository = tasksRepository;
