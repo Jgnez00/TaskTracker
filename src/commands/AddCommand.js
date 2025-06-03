@@ -21,7 +21,7 @@ export default class AddCommand {
   // Method to execute the command.
   execute () {
     try {
-      const tasks = readTasks(); // Read the current tasks from the tasks repository.
+      const tasks = this.tasksRepository.readTasks(); // Read the current tasks from the tasks repository.
       validateDescription(this.description); // Validate the description of the new task.
 
       // Create the new task for the tasks repository.
