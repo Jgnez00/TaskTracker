@@ -1,4 +1,4 @@
-import { validateId } from "../validator/taskValidator";
+import { validateId } from "../validator/taskValidator.js";
 
 export default class DeleteCommand {
   // Method constructor of the class.
