@@ -4,14 +4,10 @@ export const validateStatus = (status) => {
   // Allowed task status
   const allowedStates = ['todo', 'in-progress', 'done'];
 
-  // Check if status is provided
-  if (!status) {
-    throw new Error('Status is required');
-  }
-
   // Check if status is one of the allowed states
   if (!allowedStates.includes(status)) {
-    throw new Error(`Invalid status. Valid values: ${allowedStates.join(', ')}`);
+    console.log(`Invalid status. Valid values: ${allowedStates.join(', ')}`);
+    return true;
   }
 }
 

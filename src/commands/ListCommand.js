@@ -1,4 +1,4 @@
-import { validateStatus } from "../validator/taskValidator";
+import { validateStatus } from "../validator/taskValidator.js";
 
 export default class ListCommand {
   // This command lists all tasks or filters them by status if provided.
@@ -20,8 +20,16 @@ export default class ListCommand {
   // Method to execute the command.
   execute () {
     const tasks = this.tasksRepository.readTasks(); // Read the current tasks from the tasks repository.
-    validateStatus(this.status); // Validate the provided status.
 
+    // If no status is provided, display all tasks.
+    if (!this.status) {
+      console.log(tasks); 
+      return;
+    }
+
+    // Validate the provided status.
+    if (validateStatus(this.status)) return;
+    
     const tasksFiltered = tasks.filter(t => t.status === this.status); // filter tasks by that status.
 
     tasksFiltered.length === 0 
